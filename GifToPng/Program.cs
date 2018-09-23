@@ -20,6 +20,8 @@ namespace GifToPng
             string directPath = "./" + fileName;
             Directory.CreateDirectory(directPath);
 
+			Console.WriteLine("Save frames as JPEG or PNG?");
+			string extension = Console.ReadLine();
             Console.WriteLine("Getting all frames from " + fileName);
             var gifImg = Image.FromFile(filePath);
             var dimension = new FrameDimension(gifImg.FrameDimensionsList[0]);
@@ -31,7 +33,7 @@ namespace GifToPng
             {
                 gifImg.SelectActiveFrame(dimension, i);
                 var image = (Image)gifImg.Clone();
-                image.Save(directPath + "/frame" + i + ".jpeg");
+                image.Save(directPath + "/frame" + i + "." + extension);
                 Console.WriteLine("[" + i + "] Frame exported.");
             }
 
